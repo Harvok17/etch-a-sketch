@@ -22,8 +22,12 @@ let grid = document.getElementById("grid");
 let colorHandler = hoverDefault;
 let gridValue = 16;
 
-window.onload = createDiv(gridValue);
-container.addEventListener("mouseover", colorHandler);
+window.onload = function() {
+  createDiv(gridValue);
+    container.addEventListener("mouseover", colorHandler);
+    blackBtn.classList.add("selected");
+};
+
 
 window.addEventListener("keyup", function (e) {
   if (e.keyCode == 49) {
