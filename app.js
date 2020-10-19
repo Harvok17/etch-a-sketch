@@ -6,6 +6,7 @@ const colorPick = document.querySelector("input[type=color]");
 const clearBtn = document.querySelector(".clear");
 const newGridBtn = document.querySelector(".new-grid");
 const penIndicator = document.querySelector(".pen-indicator");
+let toolIndicator = document.querySelector(".tool-indicator");
 
 //Modal
 const modal = document.querySelector(".modal-container");
@@ -103,12 +104,25 @@ colorPick.addEventListener("change", function () {
   colorHandler = hoverColorPick;
   addContainerEvent();
   penIndicator.classList.remove("disabled");
+  toolIndicator.style.top = "28%";
 });
+
+colorPick.addEventListener("click", function () {
+  removeContainerEvent();
+  colorHandler = hoverColorPick;
+  addContainerEvent();
+  penIndicator.classList.remove("disabled");
+  toolIndicator.style.top = "28%";
+});
+
+
+
 blackBtn.addEventListener("click", function () {
   removeContainerEvent();
   colorHandler = hoverDefault;
   addContainerEvent();
   penIndicator.classList.remove("disabled");
+  toolIndicator.style.top = "45%";
 });
 
 rgbBtn.addEventListener("click", function () {
@@ -116,6 +130,7 @@ rgbBtn.addEventListener("click", function () {
   colorHandler = hoverRgb;
   addContainerEvent();
   penIndicator.classList.remove("disabled");
+  toolIndicator.style.top = "62%";
 });
 
 clearBtn.addEventListener("click", function () {
