@@ -32,7 +32,6 @@ window.addEventListener("keyup", function (e) {
   } else if (e.keyCode == 50) {
     container.removeEventListener("mouseover", colorHandler);
     penIndicator.classList.add("disabled");
-    2;
   }
 });
 
@@ -101,14 +100,14 @@ function openForGrid(e) {
 colorPick.addEventListener("change", function () {
   removeContainerEvent();
   colorHandler = hoverColorPick;
-  addContainerEvent();
+  addContainerEvent(colorPick);
   penIndicator.classList.remove("disabled");
 });
 
 colorPick.addEventListener("click", function () {
   removeContainerEvent();
   colorHandler = hoverColorPick;
-  addContainerEvent();
+  addContainerEvent(colorPick);
   penIndicator.classList.remove("disabled");
 });
 
@@ -117,14 +116,14 @@ colorPick.addEventListener("click", function () {
 blackBtn.addEventListener("click", function () {
   removeContainerEvent();
   colorHandler = hoverDefault;
-  addContainerEvent();
+  addContainerEvent(blackBtn);
   penIndicator.classList.remove("disabled");
 });
 
 rgbBtn.addEventListener("click", function () {
   removeContainerEvent();
   colorHandler = hoverRgb;
-  addContainerEvent();
+  addContainerEvent(rgbBtn);
   penIndicator.classList.remove("disabled");
 });
 
@@ -161,10 +160,14 @@ function createDiv(num) {
 
 function removeContainerEvent() {
   container.removeEventListener("mouseover", colorHandler);
+  colorPick.classList.remove("selected");
+  blackBtn.classList.remove("selected");
+  rgbBtn.classList.remove("selected");
 }
 
-function addContainerEvent() {
+function addContainerEvent(selected) {
   container.addEventListener("mouseover", colorHandler);
+  selected.classList.add("selected");
 }
 
 function hoverColorPick(e) {
