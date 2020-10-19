@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    background-image: url(images/darkbackground.jpg);
+    background-size: cover;
+    background-position: center;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Architects Daughter', cursive;
+}
+
+h1{
+  position: absolute;
+  top: 1rem;
+  font-size: 2.5rem;
+}
+
+.big-container{
+  width: 900px;
+  /*min-width: 834px;*/
+  min-width: 768px;
+  height: 850px;
+  min-height: 727px;
+  max-height: 80vw;
+  max-width: 90%;
+  border: 2px solid black;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  background-color: whitesmoke;
+  -webkit-box-shadow: -14px 9px 9px -4px rgba(0,0,0,0.75);
+  -moz-box-shadow: -14px 9px 9px -4px rgba(0,0,0,0.75);
+  box-shadow: -14px 9px 9px -4px rgba(0,0,0,0.75);
+}
+
+
+.container{
+    height: 79%;
+    width: 79%;
+    background: white;
+    display: grid;
+    border: 3px solid black;
+}
+
+
+/*Modal Box*/
+.modal-container {
+    display: none;
+    padding-top: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .modal-container.open {
+    display: block;
+    animation: fadein 0.5s;
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    max-width: 300px;
+    min-width: 300px;
+    margin: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    box-shadow: 1px 5px 9px 0px rgba(77, 77, 77, 0.7);
+  }
+  
+  .close {
+    position: absolute;
+    right: 15px;
+    top: 5px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .close:hover {
+    transform: scale(1.4);
+  }
+  
+  .message {
+    margin: auto;
+    padding: 30px 30px 40px 30px;
+    color: #4b4848;
+  }
+  
+  .modal-buttons {
+    margin: auto;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  #ok,
+  #cancel {
+    flex: 1;
+    height: 40px;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border: 0;
+    cursor: pointer;
+  }
+  
+  #ok {
+    background-color: rgb(83, 173, 83);
+    color: white;
+    border-radius: 0 0 0 5px;
+  }
+  
+  #ok:hover {
+    background-color: rgb(119, 199, 119);
+  }
+  
+  #cancel {
+    background-color: rgb(255, 100, 100);
+    color: white;
+    border-radius: 0 0 5px 0;
+  }
+  #cancel:hover {
+    background-color: rgb(255, 173, 173);
+  }
+
+  .grid-choices-container{
+    width: 300px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: auto;
+    position: absolute;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: white;
+    top: 10px;
+    left: 50%;
+    transform: translate(-50%,-100%);
+    z-index: 1;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .grid-choices-container.open{
+    transform: translate(-50%, 0);
+  }
+
+  .grid-choices{
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  .tools{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 50px;
+    height: 600px;
+    flex-direction: column;
+    position: absolute;
+    left: 2.5%;
+  }
+
+  .custom-color{
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    background-color: transparent;
+    border: 2px solid black;
+    border-radius: 50%;
+    transition: ease 0.3s;
+  }
+
+  .custom-color:hover{
+    transform: translateY(-5px);
+    -webkit-box-shadow: 1px 5px 9px -2px rgba(125,125,125,1);
+-moz-box-shadow: 1px 5px 9px -2px rgba(125,125,125,1);
+box-shadow: 1px 5px 9px -2px rgba(125,125,125,1);
+  }
+
+  .shade{
+    background-image: url(images/shade.svg);
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    background-color: transparent;
+    border-radius: 10px;
+    border: 0;
+    cursor: pointer;
+    transition: ease 0.3s;
+  }
+
+  .shade:hover{
+    transform: translateY(-5px);
+    -webkit-box-shadow: 1px 5px 9px -2px rgba(125,125,125,1);
+-moz-box-shadow: 1px 5px 9px -2px rgba(125,125,125,1);
+box-shadow: 1px 5px 9px -2px rgba(125,125,125,1);
+  }
+
+  .rgb{
+    background-image: url(images/rgb.svg);
+    width: 40px;
+    height: 40px;
+    padding: 1px;
+    background-size: cover;
+    background-color: transparent;
+    border-radius: 10px;
+    border: 0;
+    cursor: pointer;
+    transition: ease 0.3s;
+  }
+
+  .rgb:hover{
+    transform: translateY(-5px);
+    -webkit-box-shadow: 1px 5px 9px -2px rgba(125,125,125,1);
+-moz-box-shadow: 1px 5px 9px -2px rgba(125,125,125,1);
+box-shadow: 1px 5px 9px -2px rgba(125,125,125,1);
+  }
+
+  .clear{
+    font-family: inherit;
+    background-color: transparent;
+    padding: 0.5rem;
+    border: 2px solid black;
+    border-radius: 10px;
+    transition: ease 0.3s;
+  }
+
+  .clear:hover{
+    transform: translateY(-5px);
+    -webkit-box-shadow: 1px 5px 9px -2px rgba(125,125,125,1);
+-moz-box-shadow: 1px 5px 9px -2px rgba(125,125,125,1);
+box-shadow: 1px 5px 9px -2px rgba(125,125,125,1);
+  }
+  
+
+  .new-grid{
+    font-family: inherit;
+    background-color: transparent;
+    padding: 0.5rem;
+    border: 2px solid black;
+    border-radius: 10px;
+    position: absolute;
+    right: 1%;
+    transition: ease 0.3s;
+  }
+
+  .new-grid:hover{
+    transform: translateY(-5px);
+    -webkit-box-shadow: 1px 5px 9px -2px rgba(125,125,125,1);
+-moz-box-shadow: 1px 5px 9px -2px rgba(125,125,125,1);
+box-shadow: 1px 5px 9px -2px rgba(125,125,125,1);
+  }
+
+  .instruction{
+    position: absolute;
+    bottom: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 250px;
+  }
+
+  .pen-indicator{
+    height: 40px; 
+    width: 40px;
+    border-radius: 5px;
+    padding: 3px;
+    background-color: rgb(255, 230, 0);
+    border: 2px solid rgb(175, 161, 30);
+  }
+
+  .disabled{
+    background-color: lightgrey;
+    border: 0;
+  }
+
+ 
