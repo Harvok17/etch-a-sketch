@@ -101,6 +101,7 @@ colorPick.addEventListener("change", function () {
   colorHandler = hoverColorPick;
   colorPick.classList.add("selected");
   penIndicator.classList.add("disabled");
+  penOn = false;
 });
 
 colorPick.addEventListener("click", function () {
@@ -108,6 +109,7 @@ colorPick.addEventListener("click", function () {
   colorHandler = hoverColorPick;
   colorPick.classList.add("selected");
   penIndicator.classList.add("disabled");
+  penOn = false;
 });
 
 blackBtn.addEventListener("click", function () {
@@ -115,6 +117,7 @@ blackBtn.addEventListener("click", function () {
   colorHandler = hoverDefault;
   blackBtn.classList.add("selected");
   penIndicator.classList.add("disabled");
+  penOn = false;
 });
 
 rgbBtn.addEventListener("click", function () {
@@ -122,6 +125,7 @@ rgbBtn.addEventListener("click", function () {
   colorHandler = hoverRgb;
   rgbBtn.classList.add("selected");
   penIndicator.classList.add("disabled");
+  penOn = false;
 });
 
 clearBtn.addEventListener("click", function () {
