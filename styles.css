@@ -184,6 +184,7 @@ h1{
     padding: 8px;
     background-color: transparent;
     border: 2px solid black;
+    cursor: pointer;
     border-radius: 50%;
     transition: ease 0.3s;
   }
@@ -240,6 +241,7 @@ box-shadow: 1px 5px 9px -2px rgba(125,125,125,1);
     padding: 0.4rem 0.3rem 0.4rem 0.3rem;
     border: 2px solid black;
     border-radius: 10px;
+    cursor: pointer;
     transition: ease 0.3s;
   }
 
@@ -265,6 +267,7 @@ box-shadow: 1px 5px 9px -2px rgba(125,125,125,1);
     border-radius: 10px;
     position: absolute;
     right: 1.2%;
+    cursor: pointer;
     transition: ease 0.3s;
   }
 
@@ -277,11 +280,12 @@ box-shadow: 1px 5px 9px -2px rgba(125,125,125,1);
 
   .instruction{
     position: absolute;
-    bottom: 1%;
+    bottom: 4%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 250px;
+    width: 450px;
+    line-height: 1.2rem;
   }
 
   .pen-indicator{

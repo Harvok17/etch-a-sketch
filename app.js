@@ -6,6 +6,7 @@ const colorPick = document.querySelector("input[type=color]");
 const clearBtn = document.querySelector(".clear");
 const newGridBtn = document.querySelector(".new-grid");
 const penIndicator = document.querySelector(".pen-indicator");
+let penOn = false;
 
 //Modal
 const modal = document.querySelector(".modal-container");
@@ -24,18 +25,22 @@ let gridValue = 16;
 
 window.onload = function() {
   createDiv(gridValue);
-    container.addEventListener("mouseover", colorHandler);
-    blackBtn.classList.add("selected");
+  blackBtn.classList.add("selected");
+  penIndicator.classList.add("disabled");
 };
 
 
-window.addEventListener("keyup", function (e) {
-  if (e.keyCode == 49) {
-    container.addEventListener("mouseover", colorHandler);
-    penIndicator.classList.remove("disabled");
-  } else if (e.keyCode == 50) {
-    container.removeEventListener("mouseover", colorHandler);
-    penIndicator.classList.add("disabled");
+container.addEventListener("click", function (e) {
+  if (e.target.className === "box") {
+    if (!penOn) {
+      penOn = true;
+      container.addEventListener("mouseover", colorHandler);
+      penIndicator.classList.remove("disabled");
+    } else {
+      penOn = false;
+      container.removeEventListener("mouseover", colorHandler);
+      penIndicator.classList.add("disabled");
+    }
   }
 });
 
@@ -52,7 +57,6 @@ modalClose.addEventListener("click", function () {
 });
 
 //Grid Choices
-
 customGrid.addEventListener("keydown", function (e) {
   if (e.keyCode == 13) {
     e.preventDefault();
@@ -89,6 +93,45 @@ newGridBtn.addEventListener("click", function () {
   modalButtons.addEventListener("click", openForGrid);
 });
 
+
+
+//Color Tools
+colorPick.addEventListener("change", function () {
+  removeContainerEvent();
+  colorHandler = hoverColorPick;
+  colorPick.classList.add("selected");
+  penIndicator.classList.add("disabled");
+});
+
+colorPick.addEventListener("click", function () {
+  removeContainerEvent();
+  colorHandler = hoverColorPick;
+  colorPick.classList.add("selected");
+  penIndicator.classList.add("disabled");
+});
+
+blackBtn.addEventListener("click", function () {
+  removeContainerEvent();
+  colorHandler = hoverDefault;
+  blackBtn.classList.add("selected");
+  penIndicator.classList.add("disabled");
+});
+
+rgbBtn.addEventListener("click", function () {
+  removeContainerEvent();
+  colorHandler = hoverRgb;
+  rgbBtn.classList.add("selected");
+  penIndicator.classList.add("disabled");
+});
+
+clearBtn.addEventListener("click", function () {
+  modal.classList.add("open");
+  message.innerText = "Your art will be erased. Are you sure?";
+  modalButtons.removeEventListener("click", openForGrid);
+  modalButtons.addEventListener("click", openForClear);
+});
+
+//Modal Handlers
 function openForGrid(e) {
   if (e.target.id === "ok") {
     gridChoices.classList.add("open");
@@ -100,44 +143,6 @@ function openForGrid(e) {
   }
 }
 
-//Color Tools
-colorPick.addEventListener("change", function () {
-  removeContainerEvent();
-  colorHandler = hoverColorPick;
-  addContainerEvent(colorPick);
-  penIndicator.classList.remove("disabled");
-});
-
-colorPick.addEventListener("click", function () {
-  removeContainerEvent();
-  colorHandler = hoverColorPick;
-  addContainerEvent(colorPick);
-  penIndicator.classList.remove("disabled");
-});
-
-
-
-blackBtn.addEventListener("click", function () {
-  removeContainerEvent();
-  colorHandler = hoverDefault;
-  addContainerEvent(blackBtn);
-  penIndicator.classList.remove("disabled");
-});
-
-rgbBtn.addEventListener("click", function () {
-  removeContainerEvent();
-  colorHandler = hoverRgb;
-  addContainerEvent(rgbBtn);
-  penIndicator.classList.remove("disabled");
-});
-
-clearBtn.addEventListener("click", function () {
-  modal.classList.add("open");
-  message.innerText = "Your art will be erased. Are you sure?";
-  modalButtons.removeEventListener("click", openForGrid);
-  modalButtons.addEventListener("click", openForClear);
-});
-
 function openForClear(e) {
   if (e.target.id === "ok") {
     container.innerHTML = "";
@@ -147,6 +152,7 @@ function openForClear(e) {
     modalClose.click();
   }
 }
+
 // Create Divs
 function createDiv(num) {
   container.style.cssText = `
@@ -162,6 +168,7 @@ function createDiv(num) {
   }
 }
 
+//Tool Handlers
 function removeContainerEvent() {
   container.removeEventListener("mouseover", colorHandler);
   colorPick.classList.remove("selected");
@@ -169,10 +176,6 @@ function removeContainerEvent() {
   rgbBtn.classList.remove("selected");
 }
 
-function addContainerEvent(selected) {
-  container.addEventListener("mouseover", colorHandler);
-  selected.classList.add("selected");
-}
 
 function hoverColorPick(e) {
   if (e.target.className == "box") {
